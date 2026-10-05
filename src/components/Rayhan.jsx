@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Mail, Code2, Sparkles, Terminal, BookOpen, Award } from 'lucide-react';
+import { ArrowRight, Download, Mail, Code2, Sparkles, Terminal, BookOpen, Award, CheckCircle2 } from 'lucide-react';
 import { GithubIcon as Github, LinkedinIcon as Linkedin } from './Icons';
 import { portfolioData } from '../data/portfolioData';
+import profileImg from '../assets/profile.jpg';
 
-export const Hero = () => {
+export const Rayhan = () => {
   const { personal } = portfolioData;
 
   return (
@@ -96,55 +97,42 @@ export const Hero = () => {
           </div>
         </motion.div>
 
-        {/* Right Column: Code Card Visual Element */}
+        {/* Right Column: Profile Picture Visual Element */}
         <motion.div 
           className="hero-visual"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.1 }}
         >
-          <div className="code-window glass-card">
-            <div className="code-window-header">
-              <div className="window-dots">
-                <span className="dot dot-red"></span>
-                <span className="dot dot-yellow"></span>
-                <span className="dot dot-green"></span>
-              </div>
-              <div className="window-title">
-                <Terminal size={14} />
-                <span>developer_profile.json</span>
-              </div>
+          <div className="profile-image-card-wrapper">
+            <div className="profile-image-container glass-card">
+              <img 
+                src={profileImg} 
+                alt={personal.name} 
+                className="profile-img"
+              />
+              <div className="profile-image-overlay"></div>
             </div>
 
-            <div className="code-content">
-              <pre>
-                <code>
-                  <span className="syn-keyword">const</span> <span className="syn-def">engineer</span> = &#123;<br />
-                  &nbsp;&nbsp;<span className="syn-prop">name</span>: <span className="syn-str">"{personal.name}"</span>,<br />
-                  &nbsp;&nbsp;<span className="syn-prop">degree</span>: <span className="syn-str">"{personal.degree}"</span>,<br />
-                  &nbsp;&nbsp;<span className="syn-prop">university</span>: <span className="syn-str">"{personal.university}"</span>,<br />
-                  &nbsp;&nbsp;<span className="syn-prop">cgpa</span>: <span className="syn-num">3.84</span>,<br />
-                  &nbsp;&nbsp;<span className="syn-prop">research</span>: [<span className="syn-str">"IEEE 28th ICCIT Conference Paper"</span>],<br />
-                  &nbsp;&nbsp;<span className="syn-prop">domains</span>: [<br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="syn-str">"Software Engineering"</span>,<br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="syn-str">"Web Development"</span>,<br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="syn-str">"AI & Machine Learning"</span>,<br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="syn-str">"Data Science & NLP"</span><br />
-                  &nbsp;&nbsp;],<br />
-                  &nbsp;&nbsp;<span className="syn-prop">readyToHire</span>: <span className="syn-bool">true</span><br />
-                  &#125;;
-                </code>
-              </pre>
-            </div>
-
-            {/* Floating Info Tag */}
-            <div className="floating-stat-card glass-card">
+            {/* Floating Info Tag 1: CGPA */}
+            <div className="floating-stat-card stat-card-top glass-card">
               <div className="stat-icon">
                 <Code2 size={20} />
               </div>
               <div>
                 <div className="stat-value">3.84 / 4.00</div>
-                <div className="stat-label">Academic CGPA</div>
+                <div className="stat-label">BSc CSE CGPA</div>
+              </div>
+            </div>
+
+            {/* Floating Info Tag 2: Research */}
+            <div className="floating-stat-card stat-card-bottom glass-card">
+              <div className="stat-icon icon-purple">
+                <Award size={20} />
+              </div>
+              <div>
+                <div className="stat-value">IEEE Published</div>
+                <div className="stat-label">28th ICCIT Author</div>
               </div>
             </div>
           </div>
@@ -309,73 +297,65 @@ export const Hero = () => {
           transform: translateY(-2px);
         }
 
-        /* Code Window Styling */
-        .code-window {
+        /* Profile Image Styling */
+        .profile-image-card-wrapper {
           position: relative;
-          background: #0d1117;
-          border-radius: var(--radius-md);
+          max-width: 420px;
+          margin: 0 auto;
+        }
+
+        .profile-image-container {
+          position: relative;
+          border-radius: 24px;
           overflow: hidden;
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          padding: 8px;
+          background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(99, 102, 241, 0.2));
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(6, 182, 212, 0.2);
+          border: 1px solid rgba(6, 182, 212, 0.4);
         }
 
-        .code-window-header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0.75rem 1.25rem;
-          background: rgba(255, 255, 255, 0.03);
-          border-bottom: 1px solid var(--border-subtle);
+        .profile-img {
+          width: 100%;
+          height: 480px;
+          object-fit: cover;
+          object-position: center 20%;
+          border-radius: 18px;
+          display: block;
+          transition: transform 0.5s ease;
         }
 
-        .window-dots {
-          display: flex;
-          gap: 6px;
+        .profile-image-container:hover .profile-img {
+          transform: scale(1.03);
         }
-
-        .dot {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-        }
-        .dot-red { background: #ef4444; }
-        .dot-yellow { background: #f59e0b; }
-        .dot-green { background: #10b981; }
-
-        .window-title {
-          display: flex;
-          align-items: center;
-          gap: 0.4rem;
-          font-family: var(--font-mono);
-          font-size: 0.8rem;
-          color: var(--text-subtle);
-        }
-
-        .code-content {
-          padding: 1.5rem;
-          font-family: var(--font-mono);
-          font-size: 0.85rem;
-          line-height: 1.7;
-          overflow-x: auto;
-        }
-
-        .syn-keyword { color: #f43f5e; font-weight: 600; }
-        .syn-def { color: #38bdf8; }
-        .syn-prop { color: #a78bfa; }
-        .syn-str { color: #34d399; }
-        .syn-num { color: #fbbf24; }
-        .syn-bool { color: #fb7185; }
 
         .floating-stat-card {
           position: absolute;
-          bottom: 20px;
-          right: 20px;
           display: flex;
           align-items: center;
           gap: 0.85rem;
           padding: 0.75rem 1.1rem;
-          background: rgba(15, 23, 42, 0.9);
-          border: 1px solid rgba(6, 182, 212, 0.3);
-          backdrop-filter: blur(10px);
+          background: rgba(10, 13, 20, 0.88);
+          border: 1px solid rgba(6, 182, 212, 0.35);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border-radius: 14px;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+          z-index: 10;
+        }
+
+        .stat-card-top {
+          top: 25px;
+          left: -20px;
+        }
+
+        .stat-card-bottom {
+          bottom: 25px;
+          right: -20px;
+        }
+
+        @media (max-width: 576px) {
+          .stat-card-top { left: 10px; }
+          .stat-card-bottom { right: 10px; }
         }
 
         .stat-icon {
@@ -384,14 +364,19 @@ export const Hero = () => {
           justify-content: center;
           width: 38px;
           height: 38px;
-          border-radius: 8px;
+          border-radius: 10px;
           background: rgba(6, 182, 212, 0.15);
           color: var(--accent-cyan);
         }
 
+        .stat-icon.icon-purple {
+          background: rgba(99, 102, 241, 0.15);
+          color: #a78bfa;
+        }
+
         .stat-value {
           font-weight: 800;
-          font-size: 1.1rem;
+          font-size: 1.05rem;
           color: var(--text-bright);
         }
 

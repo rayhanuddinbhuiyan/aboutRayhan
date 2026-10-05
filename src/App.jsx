@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
+import { Rayhan } from './components/Rayhan';
 import { About } from './components/About';
 import { Education } from './components/Education';
 import { Skills } from './components/Skills';
@@ -14,7 +14,7 @@ export default function App() {
     <div className="portfolio-app">
       <Navbar />
       <main>
-        <Hero />
+        <Rayhan />
         <About />
         <Education />
         <Skills />
