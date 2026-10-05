@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Code2, Sparkles, User, GraduationCap, Wrench, FolderGit2, Award, Mail } from 'lucide-react';
+import { Menu, X, Code2, Sparkles, User, GraduationCap, Wrench, FolderGit2, Award, Mail, Sun, Moon } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('portfolio-theme') || 'light';
+  });
 
   const navLinks = [
     { id: 'home', label: 'Home', icon: Sparkles },
@@ -16,6 +19,15 @@ export const Navbar = () => {
     { id: 'activities', label: 'Activities', icon: Award },
     { id: 'contact', label: 'Contact', icon: Mail }
   ];
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('portfolio-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -89,8 +101,17 @@ export const Navbar = () => {
           })}
         </nav>
 
-        {/* CTA Button */}
+        {/* Action Controls: Theme Switcher & CTA */}
         <div className="navbar-action">
+          <button 
+            className="theme-toggle-btn"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} theme`}
+            title={`Switch to ${theme === 'light' ? 'Dark Mode' : 'Light Beige Mode'}`}
+          >
+            {theme === 'light' ? <Moon size={19} /> : <Sun size={19} />}
+          </button>
+
           <a 
             href="#contact" 
             className="btn btn-primary nav-cta"
@@ -103,15 +124,25 @@ export const Navbar = () => {
           </a>
         </div>
 
-        {/* Mobile Hamburger Button */}
-        <button
-          className="mobile-toggle-btn"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label={mobileMenuOpen ? "Close menu" : "Open navigation menu"}
-          aria-expanded={mobileMenuOpen}
-        >
-          {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
-        </button>
+        {/* Mobile Hamburger Button & Theme Toggle */}
+        <div className="mobile-controls">
+          <button 
+            className="theme-toggle-btn"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            {theme === 'light' ? <Moon size={19} /> : <Sun size={19} />}
+          </button>
+
+          <button
+            className="mobile-toggle-btn"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open navigation menu"}
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation Drawer */}
@@ -171,7 +202,7 @@ export const Navbar = () => {
           backdrop-filter: blur(14px);
           -webkit-backdrop-filter: blur(14px);
           border-bottom: 1px solid var(--border-subtle);
-          box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.06);
         }
 
         .navbar-container {
@@ -197,24 +228,25 @@ export const Navbar = () => {
           width: 36px;
           height: 36px;
           border-radius: 10px;
-          background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(59, 130, 246, 0.2));
-          border: 1px solid rgba(6, 182, 212, 0.4);
-          color: var(--accent-cyan-light);
+          background: var(--accent-light);
+          border: 1px solid var(--border-subtle);
+          color: var(--accent-primary);
         }
 
         .logo-accent {
-          color: var(--accent-cyan);
-          font-weight: 500;
+          color: var(--accent-primary);
+          font-weight: 600;
         }
 
         .desktop-nav {
           display: none;
           align-items: center;
           gap: 0.3rem;
-          background: rgba(255, 255, 255, 0.03);
+          background: var(--bg-card);
           border: 1px solid var(--border-subtle);
           padding: 0.35rem 0.6rem;
           border-radius: var(--radius-full);
+          backdrop-filter: blur(10px);
         }
 
         @media (min-width: 992px) {
@@ -237,32 +269,61 @@ export const Navbar = () => {
 
         .nav-link:hover {
           color: var(--text-bright);
-          background: rgba(255, 255, 255, 0.06);
+          background: var(--accent-light);
         }
 
         .nav-link.active {
-          color: #040914;
-          background: var(--accent-cyan-light);
+          color: #ffffff;
+          background: var(--accent-primary);
           font-weight: 600;
         }
 
         .nav-link.active .link-icon {
-          color: #040914;
+          color: #ffffff;
         }
 
         .navbar-action {
           display: none;
+          align-items: center;
+          gap: 0.85rem;
         }
 
         @media (min-width: 768px) {
           .navbar-action {
-            display: block;
+            display: flex;
           }
         }
 
-        .nav-cta {
-          padding: 0.55rem 1.25rem;
-          font-size: 0.88rem;
+        .theme-toggle-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: var(--bg-card);
+          border: 1px solid var(--border-subtle);
+          color: var(--text-bright);
+          transition: var(--transition-fast);
+        }
+
+        .theme-toggle-btn:hover {
+          background: var(--accent-light);
+          border-color: var(--accent-primary);
+          color: var(--accent-primary);
+          transform: rotate(15deg);
+        }
+
+        .mobile-controls {
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+        }
+
+        @media (min-width: 992px) {
+          .mobile-controls {
+            display: none;
+          }
         }
 
         .mobile-toggle-btn {
@@ -272,14 +333,8 @@ export const Navbar = () => {
           color: var(--text-bright);
           padding: 0.4rem;
           border-radius: 8px;
-          background: rgba(255, 255, 255, 0.05);
+          background: var(--bg-card);
           border: 1px solid var(--border-subtle);
-        }
-
-        @media (min-width: 992px) {
-          .mobile-toggle-btn {
-            display: none;
-          }
         }
 
         .mobile-nav-drawer {
@@ -288,7 +343,7 @@ export const Navbar = () => {
           left: 0;
           right: 0;
           bottom: 0;
-          background: rgba(10, 13, 20, 0.96);
+          background: var(--bg-primary);
           backdrop-filter: blur(20px);
           z-index: 999;
           transform: translateY(-100%);
@@ -319,14 +374,14 @@ export const Navbar = () => {
           color: var(--text-main);
           font-weight: 500;
           font-size: 1.05rem;
-          background: rgba(255, 255, 255, 0.03);
+          background: var(--bg-card);
           border: 1px solid var(--border-subtle);
         }
 
         .mobile-nav-link.active {
-          background: rgba(6, 182, 212, 0.15);
-          border-color: var(--accent-cyan);
-          color: var(--accent-cyan-light);
+          background: var(--accent-light);
+          border-color: var(--accent-primary);
+          color: var(--accent-primary);
           font-weight: 600;
         }
       `}</style>
