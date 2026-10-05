@@ -116,76 +116,105 @@ export const Skills = () => {
 
         .skills-tabs {
           display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 0.6rem;
-          margin-bottom: 2.5rem;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          justify-content: flex-start;
+          gap: 0.5rem;
+          margin-bottom: 1.75rem;
+          padding-bottom: 0.5rem;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        @media (min-width: 768px) {
+          .skills-tabs {
+            flex-wrap: wrap;
+            justify-content: center;
+            overflow-x: visible;
+            padding-bottom: 0;
+            margin-bottom: 2.5rem;
+          }
         }
 
         .tab-btn {
-          padding: 0.55rem 1.2rem;
+          flex-shrink: 0;
+          white-space: nowrap;
+          padding: 0.45rem 1rem;
           border-radius: var(--radius-full);
-          background: rgba(255, 255, 255, 0.04);
+          background: var(--bg-card);
           border: 1px solid var(--border-subtle);
           color: var(--text-muted);
-          font-size: 0.9rem;
+          font-size: 0.85rem;
           font-weight: 500;
           transition: var(--transition-fast);
         }
 
         .tab-btn:hover {
           color: var(--text-bright);
-          border-color: rgba(6, 182, 212, 0.3);
+          border-color: var(--border-hover);
         }
 
         .tab-btn.active {
-          background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(59, 130, 246, 0.2));
-          border-color: var(--accent-cyan);
-          color: var(--accent-cyan-light);
+          background: var(--accent-light);
+          border-color: var(--accent-primary);
+          color: var(--accent-primary);
           font-weight: 600;
         }
 
         .skills-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-          gap: 1.75rem;
-        }
-
-        .skill-category-card {
-          padding: 1.75rem;
-          display: flex;
-          flex-direction: column;
+          grid-template-columns: 1fr;
           gap: 1.25rem;
         }
 
+        @media (min-width: 576px) {
+          .skills-grid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+          }
+        }
+
+        .skill-category-card {
+          padding: 1.25rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1.1rem;
+        }
+
+        @media (min-width: 640px) {
+          .skill-category-card {
+            padding: 1.75rem;
+            gap: 1.25rem;
+          }
+        }
+
         .category-title {
-          font-size: 1.2rem;
+          font-size: 1.1rem;
           font-weight: 700;
           color: var(--text-bright);
-          padding-bottom: 0.75rem;
+          padding-bottom: 0.65rem;
           border-bottom: 1px solid var(--border-subtle);
         }
 
         .skill-items-list {
           display: flex;
           flex-direction: column;
-          gap: 0.85rem;
+          gap: 0.75rem;
         }
 
         .skill-item {
           display: flex;
           align-items: center;
-          gap: 0.85rem;
-          padding: 0.65rem 0.85rem;
+          gap: 0.75rem;
+          padding: 0.6rem 0.8rem;
           border-radius: var(--radius-sm);
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(255, 255, 255, 0.04);
+          background: var(--bg-primary);
+          border: 1px solid var(--border-subtle);
           transition: var(--transition-fast);
         }
 
         .skill-item:hover {
-          background: rgba(6, 182, 212, 0.08);
-          border-color: rgba(6, 182, 212, 0.25);
+          background: var(--accent-light);
+          border-color: var(--accent-primary);
           transform: translateX(3px);
         }
 
@@ -196,8 +225,8 @@ export const Skills = () => {
           width: 36px;
           height: 36px;
           border-radius: 8px;
-          background: rgba(6, 182, 212, 0.12);
-          color: var(--accent-cyan);
+          background: var(--accent-light);
+          color: var(--accent-primary);
           flex-shrink: 0;
         }
 
@@ -207,18 +236,19 @@ export const Skills = () => {
 
         .skill-name {
           font-weight: 600;
-          font-size: 0.95rem;
+          font-size: 0.9rem;
           color: var(--text-bright);
         }
 
         .skill-level {
-          font-size: 0.78rem;
+          font-size: 0.75rem;
           color: var(--text-subtle);
         }
 
         .skill-check {
-          color: var(--accent-cyan);
-          opacity: 0.7;
+          color: var(--accent-primary);
+          opacity: 0.8;
+          flex-shrink: 0;
         }
       `}</style>
     </section>

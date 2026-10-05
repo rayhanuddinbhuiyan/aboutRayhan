@@ -41,7 +41,9 @@ export const Education = () => {
                 <div className="education-top-bar">
                   <div>
                     <h3 className="degree-title">{item.degree}</h3>
-                    <div className="institution-name">{item.institution}</div>
+                    <div className="institution-name">
+                      {item.institution} {item.department && <span className="dept-tag">• Dept. of {item.department}</span>}
+                    </div>
                   </div>
                   <div className="cgpa-pill">
                     <Award size={16} />
@@ -91,15 +93,22 @@ export const Education = () => {
           margin: 0 auto;
           display: flex;
           flex-direction: column;
-          gap: 2rem;
+          gap: 1.5rem;
         }
 
         .education-card {
           position: relative;
-          padding: 2.25rem;
+          padding: 1.25rem;
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+          .education-card {
+            padding: 2rem;
+            gap: 1.5rem;
+          }
         }
 
         @media (min-width: 768px) {
@@ -113,12 +122,12 @@ export const Education = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 58px;
-          height: 58px;
-          border-radius: 16px;
-          background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(59, 130, 246, 0.2));
-          border: 1px solid rgba(6, 182, 212, 0.4);
-          color: var(--accent-cyan-light);
+          width: 48px;
+          height: 48px;
+          border-radius: 14px;
+          background: var(--accent-light);
+          border: 1px solid var(--border-subtle);
+          color: var(--accent-primary);
           flex-shrink: 0;
         }
 
@@ -126,13 +135,13 @@ export const Education = () => {
           flex: 1;
           display: flex;
           flex-direction: column;
-          gap: 1rem;
+          gap: 0.85rem;
         }
 
         .education-top-bar {
           display: flex;
           flex-direction: column;
-          gap: 0.75rem;
+          gap: 0.6rem;
         }
 
         @media (min-width: 640px) {
@@ -144,86 +153,91 @@ export const Education = () => {
         }
 
         .degree-title {
-          font-size: 1.45rem;
+          font-size: clamp(1.15rem, 4vw, 1.45rem);
           font-weight: 800;
           color: var(--text-bright);
         }
 
         .institution-name {
-          font-size: 1.1rem;
+          font-size: 0.98rem;
           font-weight: 600;
-          color: var(--accent-cyan-light);
+          color: var(--accent-primary);
+        }
+
+        .dept-tag {
+          color: var(--text-subtle);
+          font-weight: 500;
         }
 
         .cgpa-pill {
           display: inline-flex;
           align-items: center;
-          gap: 0.5rem;
-          padding: 0.45rem 0.9rem;
+          gap: 0.4rem;
+          padding: 0.35rem 0.8rem;
           border-radius: var(--radius-full);
-          background: rgba(16, 185, 129, 0.12);
-          border: 1px solid rgba(16, 185, 129, 0.3);
-          color: #34d399;
+          background: var(--accent-light);
+          border: 1px solid var(--border-subtle);
+          color: var(--accent-primary);
           font-weight: 700;
-          font-size: 0.9rem;
+          font-size: 0.85rem;
           align-self: flex-start;
         }
 
         .education-meta {
           display: flex;
           flex-wrap: wrap;
-          gap: 1.25rem;
-          font-size: 0.88rem;
+          gap: 1rem;
+          font-size: 0.85rem;
           color: var(--text-subtle);
         }
 
         .meta-item {
           display: flex;
           align-items: center;
-          gap: 0.4rem;
+          gap: 0.35rem;
         }
 
         .education-desc {
           color: var(--text-muted);
-          font-size: 1.02rem;
+          font-size: 0.95rem;
           line-height: 1.6;
         }
 
         .education-highlights-box {
-          background: rgba(255, 255, 255, 0.03);
+          background: var(--bg-primary);
           border: 1px solid var(--border-subtle);
           border-radius: var(--radius-sm);
-          padding: 1.25rem;
-          margin-top: 0.5rem;
+          padding: 1rem;
+          margin-top: 0.25rem;
         }
 
         .highlights-title {
           display: flex;
           align-items: center;
           gap: 0.5rem;
-          font-size: 0.95rem;
+          font-size: 0.9rem;
           font-weight: 700;
           color: var(--text-bright);
-          margin-bottom: 0.75rem;
+          margin-bottom: 0.65rem;
         }
 
         .highlights-list {
           list-style: none;
           display: flex;
           flex-direction: column;
-          gap: 0.6rem;
+          gap: 0.55rem;
         }
 
         .highlights-list li {
           display: flex;
           align-items: flex-start;
-          gap: 0.6rem;
-          font-size: 0.92rem;
+          gap: 0.55rem;
+          font-size: 0.88rem;
           color: var(--text-muted);
         }
 
         .list-icon {
-          color: var(--accent-cyan);
+          color: var(--accent-primary);
           margin-top: 3px;
           flex-shrink: 0;
         }

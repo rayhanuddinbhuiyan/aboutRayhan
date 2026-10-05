@@ -90,14 +90,21 @@ export const Experience = () => {
           margin: 0 auto;
           display: flex;
           flex-direction: column;
-          gap: 2rem;
+          gap: 1.5rem;
         }
 
         .activity-card {
-          padding: 2.25rem;
+          padding: 1.25rem;
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+          .activity-card {
+            padding: 2rem;
+            gap: 1.5rem;
+          }
         }
 
         @media (min-width: 768px) {
@@ -115,25 +122,25 @@ export const Experience = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 56px;
-          height: 56px;
-          border-radius: 16px;
-          background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(6, 182, 212, 0.2));
-          border: 1px solid rgba(99, 102, 241, 0.4);
-          color: var(--accent-indigo);
+          width: 48px;
+          height: 48px;
+          border-radius: 14px;
+          background: var(--accent-light);
+          border: 1px solid var(--border-subtle);
+          color: var(--accent-primary);
         }
 
         .activity-content {
           flex: 1;
           display: flex;
           flex-direction: column;
-          gap: 1rem;
+          gap: 0.85rem;
         }
 
         .activity-header {
           display: flex;
           flex-direction: column;
-          gap: 0.75rem;
+          gap: 0.6rem;
         }
 
         @media (min-width: 640px) {
@@ -145,21 +152,21 @@ export const Experience = () => {
         }
 
         .type-tag {
-          font-size: 0.75rem;
+          font-size: 0.72rem;
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.08em;
-          color: var(--accent-cyan);
+          color: var(--accent-primary);
         }
 
         .activity-title {
-          font-size: 1.35rem;
+          font-size: clamp(1.15rem, 4vw, 1.35rem);
           font-weight: 800;
           color: var(--text-bright);
         }
 
         .activity-org {
-          font-size: 1.02rem;
+          font-size: 0.95rem;
           color: var(--text-muted);
           font-weight: 500;
         }
@@ -167,40 +174,40 @@ export const Experience = () => {
         .status-badge {
           display: inline-flex;
           align-items: center;
-          padding: 0.35rem 0.85rem;
+          padding: 0.35rem 0.8rem;
           border-radius: var(--radius-full);
-          background: rgba(6, 182, 212, 0.12);
-          border: 1px solid rgba(6, 182, 212, 0.3);
-          color: var(--accent-cyan-light);
-          font-size: 0.82rem;
+          background: var(--accent-light);
+          border: 1px solid var(--border-subtle);
+          color: var(--accent-primary);
+          font-size: 0.8rem;
           font-weight: 700;
           align-self: flex-start;
         }
 
         .activity-desc {
           color: var(--text-muted);
-          font-size: 1rem;
+          font-size: 0.95rem;
           line-height: 1.6;
         }
 
         .activity-highlights {
           display: flex;
           flex-direction: column;
-          gap: 0.6rem;
-          padding-top: 1rem;
+          gap: 0.55rem;
+          padding-top: 0.85rem;
           border-top: 1px solid var(--border-subtle);
         }
 
         .point-item {
           display: flex;
           align-items: flex-start;
-          gap: 0.6rem;
-          font-size: 0.92rem;
+          gap: 0.55rem;
+          font-size: 0.88rem;
           color: var(--text-main);
         }
 
         .point-icon {
-          color: var(--accent-cyan);
+          color: var(--accent-primary);
           margin-top: 3px;
           flex-shrink: 0;
         }

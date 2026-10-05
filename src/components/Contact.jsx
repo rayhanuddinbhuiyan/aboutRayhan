@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Send, CheckCircle2, AlertCircle, Sparkles, Phone } from 'lucide-react';
-import { GithubIcon as Github, LinkedinIcon as Linkedin } from './Icons';
+import { GithubIcon as Github, LinkedinIcon as Linkedin, WhatsappIcon as Whatsapp } from './Icons';
 import { portfolioData } from '../data/portfolioData';
 
 export const Contact = () => {
@@ -63,7 +63,7 @@ export const Contact = () => {
         </div>
 
         <div className="contact-grid">
-          {/* Left Column: Direct Contact Info */}
+          {/* Left Column: Direct Contact Info - Priority Ordered: Email -> LinkedIn -> GitHub -> WhatsApp -> Phone -> Location */}
           <motion.div
             className="contact-info-col"
             initial={{ opacity: 0, x: -30 }}
@@ -74,20 +74,11 @@ export const Contact = () => {
             <div className="info-card glass-card">
               <h3>Contact Details</h3>
               <p className="info-intro">
-                I am actively seeking software engineering positions, capstone research opportunities, and technical projects.
+                I am actively seeking software engineering roles, research opportunities, and technical projects.
               </p>
 
               <div className="contact-links-list">
-                <a href={`tel:${personal.phone}`} className="contact-item">
-                  <div className="item-icon">
-                    <Phone size={20} />
-                  </div>
-                  <div>
-                    <div className="item-label">Phone</div>
-                    <div className="item-value">{personal.phone}</div>
-                  </div>
-                </a>
-
+                {/* 1. Email */}
                 <a href={`mailto:${personal.email}`} className="contact-item">
                   <div className="item-icon">
                     <Mail size={20} />
@@ -98,16 +89,7 @@ export const Contact = () => {
                   </div>
                 </a>
 
-                <a href={personal.github} target="_blank" rel="noopener noreferrer" className="contact-item">
-                  <div className="item-icon">
-                    <Github size={20} />
-                  </div>
-                  <div>
-                    <div className="item-label">GitHub Repository</div>
-                    <div className="item-value">github.com/rayhanuddinbhuiyan</div>
-                  </div>
-                </a>
-
+                {/* 2. LinkedIn */}
                 <a href={personal.linkedin} target="_blank" rel="noopener noreferrer" className="contact-item">
                   <div className="item-icon">
                     <Linkedin size={20} />
@@ -118,6 +100,40 @@ export const Contact = () => {
                   </div>
                 </a>
 
+                {/* 3. GitHub */}
+                <a href={personal.github} target="_blank" rel="noopener noreferrer" className="contact-item">
+                  <div className="item-icon">
+                    <Github size={20} />
+                  </div>
+                  <div>
+                    <div className="item-label">GitHub Profile</div>
+                    <div className="item-value">github.com/rayhanuddinbhuiyan</div>
+                  </div>
+                </a>
+
+                {/* 4. WhatsApp */}
+                <a href={personal.whatsapp} target="_blank" rel="noopener noreferrer" className="contact-item">
+                  <div className="item-icon">
+                    <Whatsapp size={20} />
+                  </div>
+                  <div>
+                    <div className="item-label">WhatsApp</div>
+                    <div className="item-value">{personal.phone}</div>
+                  </div>
+                </a>
+
+                {/* 5. Phone */}
+                <a href={`tel:${personal.phone}`} className="contact-item">
+                  <div className="item-icon">
+                    <Phone size={20} />
+                  </div>
+                  <div>
+                    <div className="item-label">Phone Call</div>
+                    <div className="item-value">{personal.phone}</div>
+                  </div>
+                </a>
+
+                {/* 6. Location */}
                 <div className="contact-item">
                   <div className="item-icon">
                     <MapPin size={20} />
@@ -236,10 +252,6 @@ export const Contact = () => {
                       </>
                     )}
                   </button>
-
-                  <div className="form-note">
-                    * Note: This form interface validates input locally. Email service backend can be integrated via EmailJS or Web3Forms.
-                  </div>
                 </form>
               )}
             </div>
@@ -255,94 +267,105 @@ export const Contact = () => {
         .contact-grid {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 2rem;
+          gap: 1.5rem;
         }
 
         @media (min-width: 992px) {
           .contact-grid {
             grid-template-columns: 0.9fr 1.1fr;
+            gap: 2rem;
           }
         }
 
         .info-card, .form-card {
-          padding: 2.25rem;
+          padding: 1.25rem;
           height: 100%;
           display: flex;
           flex-direction: column;
-          gap: 1.25rem;
+          gap: 1.1rem;
+        }
+
+        @media (min-width: 640px) {
+          .info-card, .form-card {
+            padding: 2rem;
+            gap: 1.25rem;
+          }
         }
 
         .info-card h3, .form-card h3 {
-          font-size: 1.45rem;
+          font-size: clamp(1.2rem, 4vw, 1.45rem);
           font-weight: 800;
           color: var(--text-bright);
         }
 
         .info-intro {
           color: var(--text-muted);
-          font-size: 1rem;
+          font-size: 0.95rem;
           line-height: 1.6;
         }
 
         .contact-links-list {
           display: flex;
           flex-direction: column;
-          gap: 1.1rem;
-          margin-top: 0.5rem;
+          gap: 0.85rem;
+          margin-top: 0.25rem;
         }
 
         .contact-item {
           display: flex;
           align-items: center;
-          gap: 1rem;
-          padding: 0.85rem 1rem;
+          gap: 0.85rem;
+          padding: 0.75rem 0.85rem;
           border-radius: var(--radius-sm);
-          background: rgba(255, 255, 255, 0.03);
+          background: var(--bg-primary);
           border: 1px solid var(--border-subtle);
           transition: var(--transition-fast);
+          min-width: 0;
         }
 
         .contact-item:hover {
-          background: rgba(6, 182, 212, 0.08);
-          border-color: rgba(6, 182, 212, 0.3);
-          transform: translateX(4px);
+          background: var(--accent-light);
+          border-color: var(--accent-primary);
+          transform: translateX(3px);
         }
 
         .item-icon {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 42px;
-          height: 42px;
+          width: 38px;
+          height: 38px;
           border-radius: 10px;
-          background: rgba(6, 182, 212, 0.12);
-          color: var(--accent-cyan);
+          background: var(--accent-light);
+          color: var(--accent-primary);
           flex-shrink: 0;
         }
 
         .item-label {
-          font-size: 0.78rem;
+          font-size: 0.72rem;
           color: var(--text-subtle);
           font-weight: 600;
           text-transform: uppercase;
         }
 
         .item-value {
-          font-size: 0.95rem;
+          font-size: 0.88rem;
           font-weight: 600;
           color: var(--text-bright);
+          word-break: break-word;
+          overflow-wrap: anywhere;
         }
 
         .availability-box {
           display: flex;
           align-items: center;
-          gap: 0.75rem;
-          padding: 0.85rem 1.1rem;
+          gap: 0.65rem;
+          padding: 0.75rem 0.95rem;
           border-radius: var(--radius-sm);
-          background: rgba(16, 185, 129, 0.1);
-          border: 1px solid rgba(16, 185, 129, 0.3);
-          color: #34d399;
-          font-size: 0.88rem;
+          background: var(--accent-light);
+          border: 1px solid var(--border-subtle);
+          color: var(--accent-primary);
+          font-size: 0.85rem;
           font-weight: 600;
           margin-top: auto;
         }
@@ -371,32 +394,37 @@ export const Contact = () => {
 
         .form-group input, .form-group textarea {
           width: 100%;
-          padding: 0.75rem 1rem;
+          padding: 0.85rem 1.1rem;
           border-radius: var(--radius-sm);
-          background: rgba(10, 13, 20, 0.6);
+          background: var(--bg-primary);
           border: 1px solid var(--border-subtle);
           color: var(--text-bright);
           font-family: inherit;
           font-size: 0.95rem;
+          font-weight: 500;
           transition: var(--transition-fast);
+          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
+        }
+
+        .form-group input::placeholder, .form-group textarea::placeholder {
+          color: var(--text-subtle);
+          opacity: 0.75;
+        }
+
+        .form-group input:hover, .form-group textarea:hover {
+          border-color: var(--border-hover);
         }
 
         .form-group input:focus, .form-group textarea:focus {
           outline: none;
-          border-color: var(--accent-cyan);
-          box-shadow: 0 0 12px rgba(6, 182, 212, 0.25);
+          border-color: var(--accent-primary);
+          background: var(--bg-card);
+          box-shadow: 0 0 0 3px var(--accent-light), 0 4px 12px rgba(0, 0, 0, 0.05);
         }
 
         .submit-btn {
           width: 100%;
           margin-top: 0.5rem;
-        }
-
-        .form-note {
-          font-size: 0.78rem;
-          color: var(--text-subtle);
-          text-align: center;
-          line-height: 1.4;
         }
 
         .error-alert {

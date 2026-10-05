@@ -106,76 +106,106 @@ export const About = () => {
         .about-grid {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 2rem;
+          gap: 1.5rem;
           align-items: stretch;
         }
 
         @media (min-width: 992px) {
           .about-grid {
             grid-template-columns: 1fr 1fr;
+            gap: 2rem;
           }
         }
 
         .about-bio-card {
-          padding: 2.25rem;
+          padding: 1.5rem;
           display: flex;
           flex-direction: column;
-          gap: 1.25rem;
+          gap: 1.1rem;
+        }
+
+        @media (min-width: 640px) {
+          .about-bio-card {
+            padding: 2.25rem;
+            gap: 1.25rem;
+          }
         }
 
         .card-header {
           display: flex;
           align-items: center;
           gap: 0.75rem;
-          margin-bottom: 0.5rem;
+          margin-bottom: 0.25rem;
         }
 
         .card-header h3 {
-          font-size: 1.35rem;
+          font-size: 1.25rem;
           font-weight: 700;
         }
 
+        @media (min-width: 768px) {
+          .card-header h3 {
+            font-size: 1.35rem;
+          }
+        }
+
         .accent-icon {
-          color: var(--accent-cyan);
+          color: var(--accent-primary);
+          flex-shrink: 0;
         }
 
         .about-text {
           color: var(--text-muted);
-          font-size: 1.05rem;
-          line-height: 1.7;
+          font-size: 0.98rem;
+          line-height: 1.6;
+        }
+
+        @media (min-width: 768px) {
+          .about-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+          }
         }
 
         .about-highlights {
           display: flex;
           flex-direction: column;
-          gap: 0.85rem;
+          gap: 0.75rem;
           margin-top: 0.5rem;
-          padding-top: 1.25rem;
+          padding-top: 1rem;
           border-top: 1px solid var(--border-subtle);
         }
 
         .highlight-item {
           display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          font-size: 0.95rem;
+          align-items: flex-start;
+          gap: 0.65rem;
+          font-size: 0.9rem;
           color: var(--text-main);
           font-weight: 500;
         }
 
         .check-icon {
-          color: var(--accent-cyan);
+          color: var(--accent-primary);
           flex-shrink: 0;
+          margin-top: 2px;
         }
 
         .interests-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-          gap: 1.25rem;
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        @media (min-width: 480px) {
+          .interests-grid {
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.25rem;
+          }
         }
 
         .interest-card {
-          padding: 1.5rem;
+          padding: 1.25rem;
           display: flex;
           flex-direction: column;
           gap: 0.75rem;
@@ -185,22 +215,22 @@ export const About = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 44px;
-          height: 44px;
+          width: 42px;
+          height: 42px;
           border-radius: 12px;
-          background: rgba(6, 182, 212, 0.12);
-          border: 1px solid rgba(6, 182, 212, 0.25);
-          color: var(--accent-cyan-light);
+          background: var(--accent-light);
+          border: 1px solid var(--border-subtle);
+          color: var(--accent-primary);
         }
 
         .interest-title {
-          font-size: 1.05rem;
+          font-size: 1rem;
           font-weight: 700;
           color: var(--text-bright);
         }
 
         .interest-desc {
-          font-size: 0.88rem;
+          font-size: 0.85rem;
           color: var(--text-muted);
           line-height: 1.5;
         }

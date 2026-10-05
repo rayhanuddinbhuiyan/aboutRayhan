@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Code2, Sparkles, User, GraduationCap, Wrench, FolderGit2, Award, Mail, Sun, Moon } from 'lucide-react';
+import { Menu, X, Code2, Home, User, GraduationCap, Wrench, FolderGit2, Award, Mail, Sun, Moon } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 export const Navbar = () => {
@@ -11,7 +11,7 @@ export const Navbar = () => {
   });
 
   const navLinks = [
-    { id: 'home', label: 'Home', icon: Sparkles },
+    { id: 'home', label: 'Home', icon: Home },
     { id: 'about', label: 'About', icon: User },
     { id: 'education', label: 'Education', icon: GraduationCap },
     { id: 'skills', label: 'Skills', icon: Wrench },
@@ -343,14 +343,17 @@ export const Navbar = () => {
           left: 0;
           right: 0;
           bottom: 0;
+          height: calc(100vh - 68px);
+          overflow-y: auto;
           background: var(--bg-primary);
           backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
           z-index: 999;
           transform: translateY(-100%);
           opacity: 0;
           visibility: hidden;
           transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-          padding: 1.5rem;
+          padding: 1.25rem 1.25rem 2.5rem 1.25rem;
         }
 
         .mobile-nav-drawer.open {
@@ -362,20 +365,22 @@ export const Navbar = () => {
         .mobile-nav-list {
           display: flex;
           flex-direction: column;
-          gap: 0.6rem;
+          gap: 0.55rem;
+          padding-bottom: 2rem;
         }
 
         .mobile-nav-link {
           display: flex;
           align-items: center;
           gap: 0.85rem;
-          padding: 0.85rem 1.1rem;
+          padding: 0.8rem 1rem;
           border-radius: var(--radius-md);
           color: var(--text-main);
           font-weight: 500;
-          font-size: 1.05rem;
+          font-size: 1rem;
           background: var(--bg-card);
           border: 1px solid var(--border-subtle);
+          transition: var(--transition-fast);
         }
 
         .mobile-nav-link.active {

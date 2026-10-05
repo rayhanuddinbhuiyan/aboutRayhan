@@ -112,31 +112,51 @@ export const Projects = () => {
 
         .projects-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-          gap: 2rem;
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+          .projects-grid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.75rem;
+          }
+        }
+
+        @media (min-width: 992px) {
+          .projects-grid {
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 2rem;
+          }
         }
 
         .project-card {
-          padding: 2rem;
+          padding: 1.25rem;
           display: flex;
           flex-direction: column;
           height: 100%;
+        }
+
+        @media (min-width: 640px) {
+          .project-card {
+            padding: 2rem;
+          }
         }
 
         .project-card-header {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 1rem;
+          margin-bottom: 0.85rem;
         }
 
         .project-category {
-          padding: 0.3rem 0.75rem;
+          padding: 0.25rem 0.65rem;
           border-radius: var(--radius-full);
-          background: rgba(6, 182, 212, 0.1);
-          border: 1px solid rgba(6, 182, 212, 0.25);
-          color: var(--accent-cyan);
-          font-size: 0.78rem;
+          background: var(--accent-light);
+          border: 1px solid var(--border-subtle);
+          color: var(--accent-primary);
+          font-size: 0.75rem;
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.05em;
@@ -146,22 +166,22 @@ export const Projects = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 40px;
-          height: 40px;
+          width: 36px;
+          height: 36px;
           border-radius: 10px;
-          background: rgba(255, 255, 255, 0.04);
-          color: var(--text-bright);
+          background: var(--accent-light);
+          color: var(--accent-primary);
         }
 
         .project-title {
-          font-size: 1.35rem;
+          font-size: clamp(1.15rem, 4vw, 1.35rem);
           font-weight: 800;
           color: var(--text-bright);
-          margin-bottom: 0.75rem;
+          margin-bottom: 0.65rem;
         }
 
         .project-desc {
-          font-size: 0.95rem;
+          font-size: 0.92rem;
           color: var(--text-muted);
           line-height: 1.6;
           margin-bottom: 1.25rem;
@@ -170,68 +190,76 @@ export const Projects = () => {
         .tech-stack-list {
           display: flex;
           flex-wrap: wrap;
-          gap: 0.45rem;
-          margin-bottom: 1.5rem;
+          gap: 0.4rem;
+          margin-bottom: 1.25rem;
         }
 
         .tech-badge {
-          padding: 0.25rem 0.6rem;
+          padding: 0.2rem 0.55rem;
           border-radius: var(--radius-sm);
-          background: rgba(255, 255, 255, 0.05);
+          background: var(--bg-primary);
           border: 1px solid var(--border-subtle);
-          font-size: 0.78rem;
+          font-size: 0.75rem;
           font-weight: 600;
           color: var(--text-main);
           font-family: var(--font-mono);
         }
 
         .features-container {
-          background: rgba(255, 255, 255, 0.02);
+          background: var(--bg-primary);
           border: 1px solid var(--border-subtle);
           border-radius: var(--radius-sm);
-          padding: 1rem;
-          margin-bottom: 1.5rem;
+          padding: 0.85rem;
+          margin-bottom: 1.25rem;
           margin-top: auto;
         }
 
         .features-title {
-          font-size: 0.82rem;
+          font-size: 0.78rem;
           font-weight: 700;
           color: var(--text-subtle);
           text-transform: uppercase;
           letter-spacing: 0.05em;
-          margin-bottom: 0.5rem;
+          margin-bottom: 0.45rem;
         }
 
         .features-list {
           list-style: none;
           display: flex;
           flex-direction: column;
-          gap: 0.45rem;
+          gap: 0.4rem;
         }
 
         .features-list li {
           display: flex;
           align-items: flex-start;
-          gap: 0.5rem;
-          font-size: 0.85rem;
+          gap: 0.45rem;
+          font-size: 0.83rem;
           color: var(--text-muted);
         }
 
         .feat-icon {
-          color: var(--accent-cyan);
+          color: var(--accent-primary);
           margin-top: 2px;
           flex-shrink: 0;
         }
 
         .project-actions {
           display: flex;
-          gap: 0.75rem;
+          flex-direction: column;
+          gap: 0.6rem;
+        }
+
+        @media (min-width: 480px) {
+          .project-actions {
+            flex-direction: row;
+            gap: 0.75rem;
+          }
         }
 
         .project-btn {
           flex: 1;
-          padding: 0.65rem 0.85rem;
+          padding: 0.6rem 0.85rem;
           font-size: 0.85rem;
         }
 

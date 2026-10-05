@@ -24,7 +24,7 @@ export const Rayhan = () => {
           {/* Status Badge */}
           <div className="hero-status-pill">
             <span className="pulse-dot"></span>
-            <span>{personal.status}</span>
+            <span>{personal.availability}</span>
             <span className="cgpa-tag">CGPA: {personal.cgpa}</span>
           </div>
 
@@ -39,7 +39,7 @@ export const Rayhan = () => {
           </div>
 
           <p className="hero-bio">
-            {personal.bio} Passionate about software development, AI, machine learning, data science, and modern web architectures.
+            {personal.bio}
           </p>
 
           {/* Key Quick Badges */}
@@ -50,7 +50,11 @@ export const Rayhan = () => {
             </div>
             <div className="hero-badge-item">
               <Award size={16} className="badge-icon" />
-              <span>IEEE ICCIT Author</span>
+              <span>IEEE Published Author</span>
+            </div>
+            <div className="hero-badge-item">
+              <Sparkles size={16} className="badge-icon" />
+              <span>NLP & Healthcare CV Research</span>
             </div>
           </div>
 
@@ -70,13 +74,11 @@ export const Rayhan = () => {
           <div className="hero-socials">
             <span className="socials-label">Connect:</span>
             <a 
-              href={personal.github} 
-              target="_blank" 
-              rel="noopener noreferrer" 
+              href={`mailto:${personal.email}`} 
               className="social-btn"
-              aria-label="GitHub Profile"
+              aria-label="Send Email"
             >
-              <Github size={18} />
+              <Mail size={18} />
             </a>
             <a 
               href={personal.linkedin} 
@@ -88,11 +90,13 @@ export const Rayhan = () => {
               <Linkedin size={18} />
             </a>
             <a 
-              href={`mailto:${personal.email}`} 
+              href={personal.github} 
+              target="_blank" 
+              rel="noopener noreferrer" 
               className="social-btn"
-              aria-label="Send Email"
+              aria-label="GitHub Profile"
             >
-              <Mail size={18} />
+              <Github size={18} />
             </a>
           </div>
         </motion.div>
@@ -115,18 +119,18 @@ export const Rayhan = () => {
             </div>
 
             {/* Floating Info Tag 1: CGPA */}
-            <div className="floating-stat-card stat-card-top glass-card">
+            <div className="floating-stat-card stat-card-top">
               <div className="stat-icon">
                 <Code2 size={20} />
               </div>
               <div>
-                <div className="stat-value">3.84 / 4.00</div>
+                <div className="stat-value">{personal.cgpa}</div>
                 <div className="stat-label">BSc CSE CGPA</div>
               </div>
             </div>
 
             {/* Floating Info Tag 2: Research */}
-            <div className="floating-stat-card stat-card-bottom glass-card">
+            <div className="floating-stat-card stat-card-bottom">
               <div className="stat-icon icon-purple">
                 <Award size={20} />
               </div>
@@ -141,38 +145,49 @@ export const Rayhan = () => {
 
       <style>{`
         .hero-section {
-          min-height: 90vh;
+          min-height: auto;
           display: flex;
           align-items: center;
-          padding-top: 100px;
-          padding-bottom: 4rem;
+          padding-top: 90px;
+          padding-bottom: 3rem;
+        }
+
+        @media (min-width: 992px) {
+          .hero-section {
+            min-height: 90vh;
+            padding-top: 100px;
+            padding-bottom: 4rem;
+          }
         }
 
         .hero-grid {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 3.5rem;
+          gap: 2.5rem;
           align-items: center;
         }
 
         @media (min-width: 992px) {
           .hero-grid {
             grid-template-columns: 1.15fr 0.85fr;
+            gap: 3.5rem;
           }
         }
 
         .hero-status-pill {
           display: inline-flex;
           align-items: center;
-          gap: 0.6rem;
-          padding: 0.4rem 1rem;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          padding: 0.4rem 0.85rem;
           border-radius: var(--radius-full);
-          background: rgba(6, 182, 212, 0.08);
-          border: 1px solid rgba(6, 182, 212, 0.25);
-          font-size: 0.85rem;
+          background: var(--accent-light);
+          border: 1px solid var(--border-subtle);
+          font-size: 0.82rem;
           font-weight: 500;
           color: var(--text-main);
-          margin-bottom: 1.5rem;
+          margin-bottom: 1.25rem;
+          max-width: 100%;
         }
 
         .pulse-dot {
@@ -181,46 +196,37 @@ export const Rayhan = () => {
           border-radius: 50%;
           background: #10b981;
           box-shadow: 0 0 10px #10b981;
+          flex-shrink: 0;
         }
 
         .cgpa-tag {
           padding: 0.15rem 0.5rem;
           border-radius: 4px;
-          background: rgba(59, 130, 246, 0.2);
-          color: var(--accent-cyan-light);
+          background: var(--accent-light);
+          border: 1px solid var(--border-subtle);
+          color: var(--accent-primary);
           font-weight: 700;
           font-size: 0.78rem;
         }
 
         .hero-greeting {
-          font-size: 2.5rem;
+          font-size: clamp(2rem, 7vw, 3.5rem);
           font-weight: 800;
           letter-spacing: -0.02em;
-          margin-bottom: 1rem;
-        }
-
-        @media (min-width: 768px) {
-          .hero-greeting {
-            font-size: 3.5rem;
-          }
-        }
-
-        .hero-name {
-          font-size: 2.8rem;
+          margin-bottom: 0.75rem;
           line-height: 1.15;
         }
 
-        @media (min-width: 768px) {
-          .hero-name {
-            font-size: 4rem;
-          }
+        .hero-name {
+          font-size: clamp(2.2rem, 8.5vw, 4rem);
+          line-height: 1.1;
         }
 
         .hero-role-wrapper {
-          font-size: 1.15rem;
+          font-size: clamp(1rem, 4vw, 1.15rem);
           font-weight: 600;
-          color: var(--accent-cyan-light);
-          margin-bottom: 1.25rem;
+          color: var(--accent-primary);
+          margin-bottom: 1rem;
         }
 
         .role-title {
@@ -229,46 +235,61 @@ export const Rayhan = () => {
 
         .hero-bio {
           color: var(--text-muted);
-          font-size: 1.1rem;
+          font-size: 1rem;
           max-width: 580px;
-          margin-bottom: 1.75rem;
-          line-height: 1.7;
+          margin-bottom: 1.5rem;
+          line-height: 1.6;
+        }
+
+        @media (min-width: 768px) {
+          .hero-bio {
+            font-size: 1.1rem;
+            line-height: 1.7;
+          }
         }
 
         .hero-badges {
           display: flex;
           flex-wrap: wrap;
-          gap: 1rem;
-          margin-bottom: 2rem;
+          gap: 0.6rem;
+          margin-bottom: 1.75rem;
         }
 
         .hero-badge-item {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
-          padding: 0.4rem 0.85rem;
+          gap: 0.45rem;
+          padding: 0.35rem 0.75rem;
           border-radius: var(--radius-sm);
-          background: rgba(255, 255, 255, 0.04);
+          background: var(--bg-card);
           border: 1px solid var(--border-subtle);
-          font-size: 0.85rem;
+          font-size: 0.82rem;
           color: var(--text-main);
+          font-weight: 500;
         }
 
         .badge-icon {
-          color: var(--accent-cyan);
+          color: var(--accent-primary);
+          flex-shrink: 0;
         }
 
         .hero-actions {
           display: flex;
           flex-wrap: wrap;
-          gap: 1rem;
-          margin-bottom: 2rem;
+          gap: 0.85rem;
+          margin-bottom: 1.75rem;
+        }
+
+        @media (max-width: 480px) {
+          .hero-actions .btn {
+            width: 100%;
+          }
         }
 
         .hero-socials {
           display: flex;
           align-items: center;
-          gap: 0.85rem;
+          gap: 0.75rem;
         }
 
         .socials-label {
@@ -284,16 +305,16 @@ export const Rayhan = () => {
           width: 40px;
           height: 40px;
           border-radius: 10px;
-          background: rgba(255, 255, 255, 0.04);
+          background: var(--bg-card);
           border: 1px solid var(--border-subtle);
-          color: var(--text-muted);
+          color: var(--text-bright);
           transition: var(--transition-fast);
         }
 
         .social-btn:hover {
-          color: var(--accent-cyan-light);
-          background: rgba(6, 182, 212, 0.12);
-          border-color: var(--accent-cyan);
+          color: var(--accent-primary);
+          background: var(--accent-light);
+          border-color: var(--accent-primary);
           transform: translateY(-2px);
         }
 
@@ -301,27 +322,40 @@ export const Rayhan = () => {
         .profile-image-card-wrapper {
           position: relative;
           max-width: 420px;
+          width: 100%;
           margin: 0 auto;
         }
 
         .profile-image-container {
           position: relative;
-          border-radius: 24px;
+          border-radius: 20px;
           overflow: hidden;
-          padding: 8px;
-          background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(99, 102, 241, 0.2));
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(6, 182, 212, 0.2);
-          border: 1px solid rgba(6, 182, 212, 0.4);
+          padding: 6px;
+          background: linear-gradient(135deg, var(--border-subtle), var(--accent-light));
+          box-shadow: var(--shadow-card);
+          border: 1px solid var(--border-subtle);
         }
 
         .profile-img {
           width: 100%;
-          height: 480px;
+          height: 440px;
           object-fit: cover;
           object-position: center 20%;
-          border-radius: 18px;
+          border-radius: 16px;
           display: block;
           transition: transform 0.5s ease;
+        }
+
+        @media (max-width: 768px) {
+          .profile-img {
+            height: 360px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .profile-img {
+            height: 310px;
+          }
         }
 
         .profile-image-container:hover .profile-img {
@@ -332,57 +366,67 @@ export const Rayhan = () => {
           position: absolute;
           display: flex;
           align-items: center;
-          gap: 0.85rem;
-          padding: 0.75rem 1.1rem;
-          background: rgba(10, 13, 20, 0.88);
-          border: 1px solid rgba(6, 182, 212, 0.35);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
+          gap: 0.75rem;
+          padding: 0.65rem 0.95rem;
+          background: var(--bg-card);
+          border: 1px solid var(--border-subtle);
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
           border-radius: 14px;
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+          box-shadow: var(--shadow-card), 0 8px 24px rgba(0, 0, 0, 0.12);
           z-index: 10;
         }
 
         .stat-card-top {
-          top: 25px;
-          left: -20px;
+          top: 20px;
+          left: -15px;
         }
 
         .stat-card-bottom {
-          bottom: 25px;
-          right: -20px;
+          bottom: 20px;
+          right: -15px;
         }
 
-        @media (max-width: 576px) {
-          .stat-card-top { left: 10px; }
-          .stat-card-bottom { right: 10px; }
+        @media (max-width: 640px) {
+          .stat-card-top {
+            top: 12px;
+            left: 10px;
+            padding: 0.45rem 0.75rem;
+          }
+          .stat-card-bottom {
+            bottom: 12px;
+            right: 10px;
+            padding: 0.45rem 0.75rem;
+          }
         }
 
         .stat-icon {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 38px;
-          height: 38px;
+          width: 36px;
+          height: 36px;
           border-radius: 10px;
-          background: rgba(6, 182, 212, 0.15);
-          color: var(--accent-cyan);
+          background: var(--accent-light);
+          color: var(--accent-primary);
+          flex-shrink: 0;
         }
 
         .stat-icon.icon-purple {
-          background: rgba(99, 102, 241, 0.15);
-          color: #a78bfa;
+          background: var(--accent-light);
+          color: var(--accent-primary);
         }
 
         .stat-value {
           font-weight: 800;
-          font-size: 1.05rem;
+          font-size: 0.98rem;
           color: var(--text-bright);
         }
 
         .stat-label {
-          font-size: 0.75rem;
+          font-size: 0.72rem;
           color: var(--text-muted);
+          font-weight: 600;
         }
       `}</style>
     </section>

@@ -1,6 +1,6 @@
 import React from 'react';
-import { ArrowUp, Mail, Code2, Heart } from 'lucide-react';
-import { GithubIcon as Github, LinkedinIcon as Linkedin } from './Icons';
+import { ArrowUp, Mail, Code2 } from 'lucide-react';
+import { GithubIcon as Github, LinkedinIcon as Linkedin, WhatsappIcon as Whatsapp } from './Icons';
 import { portfolioData } from '../data/portfolioData';
 
 export const Footer = () => {
@@ -21,7 +21,7 @@ export const Footer = () => {
               <span>Rayhan<span className="accent-text">.bhuiyan</span></span>
             </div>
             <p className="footer-tagline">
-              Computer Science & Engineering Student at Southeast University. Building high-performance software and AI systems.
+              Computer Science & Engineering Student at Southeast University. Building scalable software, NLP research, and healthcare AI systems.
             </p>
           </div>
 
@@ -39,18 +39,16 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Socials & Top Scroll */}
+          {/* Socials & Top Scroll - Priority: Mail -> LinkedIn -> GitHub -> WhatsApp */}
           <div className="footer-social-col">
             <h4>Connect</h4>
             <div className="social-links-row">
               <a 
-                href={personal.github} 
-                target="_blank" 
-                rel="noopener noreferrer" 
+                href={`mailto:${personal.email}`} 
                 className="footer-social-link"
-                aria-label="GitHub Profile"
+                aria-label="Email"
               >
-                <Github size={18} />
+                <Mail size={18} />
               </a>
               <a 
                 href={personal.linkedin} 
@@ -62,11 +60,22 @@ export const Footer = () => {
                 <Linkedin size={18} />
               </a>
               <a 
-                href={`mailto:${personal.email}`} 
+                href={personal.github} 
+                target="_blank" 
+                rel="noopener noreferrer" 
                 className="footer-social-link"
-                aria-label="Email"
+                aria-label="GitHub Profile"
               >
-                <Mail size={18} />
+                <Github size={18} />
+              </a>
+              <a 
+                href={personal.whatsapp} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="footer-social-link"
+                aria-label="WhatsApp"
+              >
+                <Whatsapp size={18} />
               </a>
             </div>
 
@@ -82,17 +91,18 @@ export const Footer = () => {
             © 2026 {personal.name}. All Rights Reserved.
           </p>
           <p className="dev-credit">
-            Designed & Developed with React.js & Modern CSS
+            Designed & Developed with React.js & Pure CSS
           </p>
         </div>
       </div>
 
       <style>{`
         .footer-container {
-          background: #06080e;
+          background: var(--bg-secondary);
           border-top: 1px solid var(--border-subtle);
           padding: 4rem 0 2rem 0;
           color: var(--text-muted);
+          transition: var(--transition-smooth);
         }
 
         .footer-content {
@@ -124,16 +134,16 @@ export const Footer = () => {
         }
 
         .logo-icon-svg {
-          color: var(--accent-cyan);
+          color: var(--accent-primary);
         }
 
         .accent-text {
-          color: var(--accent-cyan);
+          color: var(--accent-primary);
         }
 
         .footer-tagline {
           font-size: 0.95rem;
-          color: var(--text-subtle);
+          color: var(--text-muted);
           line-height: 1.6;
           max-width: 380px;
         }
@@ -152,8 +162,14 @@ export const Footer = () => {
           font-size: 0.9rem;
         }
 
+        .footer-links-grid a {
+          color: var(--text-muted);
+          font-weight: 500;
+          transition: var(--transition-fast);
+        }
+
         .footer-links-grid a:hover {
-          color: var(--accent-cyan-light);
+          color: var(--accent-primary);
         }
 
         .social-links-row {
@@ -166,19 +182,19 @@ export const Footer = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 38px;
-          height: 38px;
+          width: 40px;
+          height: 40px;
           border-radius: 10px;
-          background: rgba(255, 255, 255, 0.04);
+          background: var(--bg-card);
           border: 1px solid var(--border-subtle);
-          color: var(--text-muted);
+          color: var(--text-bright);
           transition: var(--transition-fast);
         }
 
         .footer-social-link:hover {
-          color: var(--accent-cyan-light);
-          background: rgba(6, 182, 212, 0.12);
-          border-color: var(--accent-cyan);
+          color: var(--accent-primary);
+          background: var(--accent-light);
+          border-color: var(--accent-primary);
           transform: translateY(-2px);
         }
 
@@ -186,20 +202,20 @@ export const Footer = () => {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
-          padding: 0.5rem 1rem;
+          padding: 0.6rem 1.1rem;
           border-radius: var(--radius-sm);
-          background: rgba(255, 255, 255, 0.04);
+          background: var(--bg-card);
           border: 1px solid var(--border-subtle);
-          color: var(--text-main);
-          font-size: 0.85rem;
+          color: var(--text-bright);
+          font-size: 0.88rem;
           font-weight: 600;
           transition: var(--transition-fast);
         }
 
         .back-to-top-btn:hover {
-          background: rgba(6, 182, 212, 0.12);
-          border-color: var(--accent-cyan);
-          color: var(--accent-cyan-light);
+          background: var(--accent-light);
+          border-color: var(--accent-primary);
+          color: var(--accent-primary);
         }
 
         .footer-bottom {
@@ -209,7 +225,7 @@ export const Footer = () => {
           align-items: center;
           justify-content: space-between;
           padding-top: 2rem;
-          border-top: 1px solid rgba(255, 255, 255, 0.05);
+          border-top: 1px solid var(--border-subtle);
           font-size: 0.88rem;
           color: var(--text-subtle);
         }
@@ -223,3 +239,4 @@ export const Footer = () => {
     </footer>
   );
 };
+
